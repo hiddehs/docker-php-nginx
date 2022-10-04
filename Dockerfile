@@ -5,6 +5,8 @@ LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpi
 # Setup document root
 WORKDIR /var/www/html
 
+#RUN #wget https://github.com/hipages/php-fpm_exporter/releases/download/v2.2.0/php-fpm_exporter_2.2.0_darwin_amd64 -O /usr/bin/php-fpm_exporter
+
 # Install packages and remove default server definition
 RUN apk add --no-cache \
   curl \
@@ -52,11 +54,17 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 
+COPY --from=hipages/php-fpm_exporter /php-fpm_exporter /usr/bin/php-fpm_exporter
+RUN chmod +x /usr/bin/php-fpm_exporter
+
 # Switch to use a non-root user from here on
 USER nobody
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
+
+# Expose php-fpm_exporter port
+EXPOSE 9253
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
