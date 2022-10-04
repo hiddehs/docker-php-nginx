@@ -5,8 +5,6 @@ LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpi
 # Setup document root
 WORKDIR /var/www/html
 
-#RUN #wget https://github.com/hipages/php-fpm_exporter/releases/download/v2.2.0/php-fpm_exporter_2.2.0_darwin_amd64 -O /usr/bin/php-fpm_exporter
-
 # Install packages and remove default server definition
 RUN apk add --no-cache \
   curl \
