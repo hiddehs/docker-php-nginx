@@ -9,6 +9,7 @@ WORKDIR /var/www/html
 RUN apk add --no-cache \
   curl \
   nginx \
+  redis \
   php81 \
   php81-ctype \
   php81-curl \
@@ -17,15 +18,22 @@ RUN apk add --no-cache \
   php81-gd \
   php81-intl \
   php81-mbstring \
-  php81-mysqli \
+  php81-pgsql \
   php81-opcache \
   php81-openssl \
   php81-phar \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  php81-xmlwriter \
+  php81-fileinfo \
+  php81-simplexml \
+  php81-tokenizer \
+  php81-exif \
+  php81-pcntl \
+  php81-posix \
+  php81-redis \
   supervisor
-
 # Create symlink so programs depending on `php` still function
 RUN ln -s /usr/bin/php81 /usr/bin/php
 
@@ -45,9 +53,6 @@ RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 # Switch to use a non-root user from here on
 USER nobody
 
-# Add application
-COPY --chown=nobody src/ /var/www/html/
-
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
@@ -56,3 +61,6 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+
+# Install composer from the official image
+COPY --from=composer /usr/bin/composer /usr/bin/composer
