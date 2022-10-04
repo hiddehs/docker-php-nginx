@@ -20,6 +20,7 @@ RUN apk add --no-cache \
   php81-mbstring \
   php81-pdo \
   php81-pgsql \
+  php81-pdo_pgsql \
   php81-opcache \
   php81-openssl \
   php81-phar \
