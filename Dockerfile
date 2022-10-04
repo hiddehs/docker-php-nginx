@@ -18,6 +18,7 @@ RUN apk add --no-cache \
   php81-gd \
   php81-intl \
   php81-mbstring \
+  php81-pdo \
   php81-pgsql \
   php81-opcache \
   php81-openssl \
