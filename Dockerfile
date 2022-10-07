@@ -32,7 +32,6 @@ RUN set -ex \
         libxslt-dev \
         libgcrypt-dev \
         libxml2 && \
-    docker-php-ext-enable redis && \
     docker-php-ext-install ctype pdo pdo_pgsql pcntl exif && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
 
