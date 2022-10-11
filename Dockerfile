@@ -18,8 +18,11 @@ RUN set -ex \
         postgresql-dev \
         jpeg-dev \
         libpng-dev \
+        libjpeg-turbo \
+        freetype-dev \
         imagemagick-dev \
         imagemagick && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
 
