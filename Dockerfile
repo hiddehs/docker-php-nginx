@@ -9,30 +9,18 @@ RUN set -ex \
     && apk --no-cache add \
         supervisor \
         nginx \
+        nano \
         curl \
-        libmcrypt-dev \
-        libxml2-dev \
-        pcre-dev \
-        zlib-dev \
         autoconf \
-        oniguruma-dev \
         curl-dev \
         openssl \
-        openssl-dev \
-        freetype-dev \
-        libjpeg-turbo-dev \
+        postgresql \
+        postgresql-dev \
         jpeg-dev \
         libpng-dev \
         imagemagick-dev \
-        imagemagick \
-        postgresql \
-        postgresql-dev \
-        libzip-dev \
-        gettext-dev \
-        libxslt-dev \
-        libgcrypt-dev \
-        libxml2 && \
-    docker-php-ext-install ctype pdo pdo_pgsql pcntl exif && \
+        imagemagick && \
+    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
 
 
