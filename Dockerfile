@@ -1,4 +1,4 @@
-ARG BASE_TAG=php8.1-alpine
+ARG BASE_TAG=php8.2-alpine
 
 # https://hub.docker.com/r/phpswoole/swoole
 FROM phpswoole/swoole:$BASE_TAG
