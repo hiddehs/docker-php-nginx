@@ -23,7 +23,7 @@ RUN set -ex \
         imagemagick-dev \
         imagemagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif && \
+    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif intl && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
 
 
