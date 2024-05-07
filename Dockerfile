@@ -16,6 +16,7 @@ RUN set -ex \
         openssl \
         postgresql \
         postgresql-dev \
+        php82-pdo_pgsql=8.2.16-r0 \
         jpeg-dev \
         libpng-dev \
         libjpeg-turbo \
@@ -26,7 +27,6 @@ RUN set -ex \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif zip intl && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
-
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
