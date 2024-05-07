@@ -1,4 +1,4 @@
-ARG BASE_TAG=php8.2-alpine
+ARG BASE_TAG=php8.3-alpine
 
 # https://hub.docker.com/r/phpswoole/swoole
 FROM phpswoole/swoole:$BASE_TAG
@@ -19,11 +19,12 @@ RUN set -ex \
         jpeg-dev \
         libpng-dev \
         libjpeg-turbo \
+        libzip-dev \
         freetype-dev \
         imagemagick-dev \
         imagemagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif intl && \
+    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif zip intl && \
     rm /var/cache/apk/* && rm -rf /tmp/pear
 
 
