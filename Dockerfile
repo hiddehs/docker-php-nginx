@@ -1,4 +1,5 @@
-ARG BASE_TAG=php8.2-alpine
+ARG BASE_TAG=5.0.3-php8.2-alpine
+#php8.2-alpine -> = 5.1 swoole = alpine 3.19 = php 8.2 rc 18 with psql bug
 
 # https://hub.docker.com/r/phpswoole/swoole
 FROM phpswoole/swoole:$BASE_TAG
@@ -16,8 +17,6 @@ RUN set -ex \
         openssl \
         postgresql \
         postgresql-dev \
-        php82=8.2.16-r0 \
-        php82-pdo_pgsql=8.2.16-r0 \
         jpeg-dev \
         libpng-dev \
         libjpeg-turbo \
@@ -44,5 +43,5 @@ USER nobody
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
-# Let supervisord start nginx + octane
+# Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
