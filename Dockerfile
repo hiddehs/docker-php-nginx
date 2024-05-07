@@ -16,6 +16,7 @@ RUN set -ex \
         openssl \
         postgresql \
         postgresql-dev \
+        php82=8.2.16-r0 \
         php82-pdo_pgsql=8.2.16-r0 \
         jpeg-dev \
         libpng-dev \
@@ -43,5 +44,5 @@ USER nobody
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
-# Let supervisord start nginx & php-fpm
+# Let supervisord start nginx + octane
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
