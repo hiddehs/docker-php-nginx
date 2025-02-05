@@ -17,15 +17,18 @@ RUN set -ex \
         curl-dev \
         openssl \
         postgresql \
+        jpeg-dev \
+        libpng-dev \
+        libwebp-dev \
+        libjpeg-turbo \
         postgresql-dev \
-        libzip-dev \
-        php83-pecl-imagick --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community && \
-    pecl install imagick && \
-    docker-php-ext-enable imagick && \
+        freetype-dev \
+        libzip-dev imagemagick imagemagick-dev  && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install ctype pdo pdo_pgsql pcntl exif zip intl && \
     apk del autoconf && \
     rm -rf /var/cache/apk/* /tmp/pear /usr/src/*
-    
+
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
