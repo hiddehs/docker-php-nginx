@@ -20,6 +20,7 @@ RUN set -ex \
         postgresql-dev \
         jpeg-dev \
         libpng-dev \
+        libwebp-dev \
         libjpeg-turbo \
         libzip-dev \
         freetype-dev \
