@@ -11,7 +11,6 @@ RUN set -ex \
     && apk --no-cache add \
         supervisor \
         nginx \
-        make \
         nano \
         curl \
         autoconf \
@@ -20,12 +19,11 @@ RUN set -ex \
         postgresql \
         postgresql-dev \
         libzip-dev \
-        imagemagick-dev \
-        imagemagick && \
+        php83-pecl-imagick --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community && \
     pecl install imagick && \
     docker-php-ext-enable imagick && \
     docker-php-ext-install ctype pdo pdo_pgsql pcntl exif zip intl && \
-    apk del make autoconf && \
+    apk del autoconf && \
     rm -rf /var/cache/apk/* /tmp/pear /usr/src/*
     
 # Configure nginx
