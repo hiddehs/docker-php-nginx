@@ -1,5 +1,5 @@
 #ARG BASE_TAG=5.0.3-php8.2-alpine
-ARG BASE_TAG=6.0-php8.4-alpine
+ARG BASE_TAG=6.0-php8.3-alpine
 #php8.2-alpine -> = 5.1 swoole = alpine 3.19 = php 8.2 rc 18 with psql bug
 
 # https://hub.docker.com/r/phpswoole/swoole
