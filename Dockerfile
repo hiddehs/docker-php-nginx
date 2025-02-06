@@ -25,7 +25,7 @@ RUN set -ex \
         freetype-dev \
         libzip-dev imagemagick imagemagick-dev  && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
-    docker-php-ext-install ctype pdo pdo_pgsql pcntl exif zip intl && \
+    docker-php-ext-install gd ctype pdo pdo_pgsql pcntl exif zip intl && \
     apk del autoconf && \
     rm -rf /var/cache/apk/* /tmp/pear /usr/src/*
 
